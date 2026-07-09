@@ -1,0 +1,8 @@
+{
+  "name": "Remix: OCTA ENERGIA",
+  "description": "Plataforma de Geradores Magnéticos Cinéticos e soluções de energia limpa de alta eficiência.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
