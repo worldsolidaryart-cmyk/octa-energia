@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Premium theme colors - Artistic Flair (Neon Yellow & Cyber Dark Slate) */
+  --color-brand-primary: #f2ff00; 
+  --color-brand-secondary: #00ffff; 
+  --color-brand-dark: #0a0a0a;
+  --color-brand-gray-dark: #121212;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #060606;
+  color: #f1f5f9;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f2ff00;
+}
+
+/* Glowing card effect */
+.artistic-glow-grid {
+  background-image: radial-gradient(rgba(242, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
