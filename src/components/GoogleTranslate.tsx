@@ -10,11 +10,18 @@ export function GoogleTranslate() {
   ];
 
   const handleTranslate = (langCode: string) => {
-    const currentUrl = window.location.href;
+    // Pega o domínio limpo do site (ex: vallecggroup.com.br ou localhost:5173)
+    const currentDomain = window.location.hostname;
+    const currentPath = window.location.pathname;
+
     if (langCode === "pt") {
-      window.location.href = currentUrl.split("?")[0];
+      // Se for português, volta para o site original limpo
+      window.location.href = `https://${currentDomain}${currentPath}`;
     } else {
-      window.location.href = `https://google.com{langCode}&u=${encodeURIComponent(currentUrl)}`;
+      // NOVO FORMATO OFICIAL: Transforma a URL no espelho de tradução da Google (.translate.goog)
+      // Exemplo: https://translate.goog
+      const formattedDomain = currentDomain.replace(/\./g, "-");
+      window.location.href = `https://${formattedDomain}.translate.goog${currentPath}?_x_tr_sl=pt&_x_tr_tl=${langCode}`;
     }
     setIsOpen(false);
   };
