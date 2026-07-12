@@ -41,3 +41,55 @@ body {
   background-image: radial-gradient(rgba(242, 255, 0, 0.03) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* ================================
+   GOOGLE TRANSLATE PREMIUM
+================================ */
+
+#google_translate_element {
+    display: flex;
+    align-items: center;
+}
+
+.goog-te-gadget {
+    font-family: inherit !important;
+    color: transparent !important;
+    font-size: 0 !important;
+}
+
+.goog-te-gadget-simple {
+    background: rgba(255,255,255,.04) !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 12px !important;
+    padding: 8px 14px !important;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.goog-te-gadget-simple:hover {
+    border-color: #f2ff00 !important;
+    background: rgba(255,255,255,.08) !important;
+}
+
+.goog-te-gadget img {
+    display: none !important;
+}
+
+.goog-te-menu-value {
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.goog-te-menu-value span {
+    border: none !important;
+    color: white !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
