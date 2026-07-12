@@ -1,67 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 export function GoogleTranslate() {
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    // 1. Cria a função de inicialização que o robô do Google exige encontrar
+    (window as any).googleTranslateElementInit = () => {
+      if ((window as any).google && (window as any).google.translate) {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: 'pt',
+            // O layout SIMPLE gera o seletor clássico de idiomas compacto
+            layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+      }
+    };
 
-  const languages = [
-    { code: "pt", label: "Português", flag: "🇧🇷" },
-    { code: "en", label: "English", flag: "🇺🇸" },
-    { code: "es", label: "Español", flag: "🇪🇸" },
-  ];
+    // 2. Injeta o script oficial do Google Tradutor de forma fixa
+    const scriptId = 'google-translate-script';
+    let script = document.getElementById(scriptId) as HTMLScriptElement;
 
-  const handleTranslate = (langCode: string) => {
-    // Captura o link completo da página atual
-    const currentUrl = window.location.href;
-
-    if (langCode === "pt") {
-      // Se for português, remove as barras de tradução antigas e limpa o link
-      window.location.href = window.location.origin + window.location.pathname;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'text/javascript';
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
     } else {
-      // Redirecionamento oficial e seguro pela API Web estável do Google Translate
-      window.location.href = `https://google.com{langCode}&u=${encodeURIComponent(currentUrl)}`;
+      // Se o script já existia em cache, força o re-carregamento imediato do botão
+      if ((window as any).googleTranslateElementInit) {
+        (window as any).googleTranslateElementInit();
+      }
     }
-    setIsOpen(false);
-  };
+  }, []);
 
   return (
-    <div className="relative inline-block text-left" style={{ zIndex: 9999 }}>
-      {/* Botão visível criado no React */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/50 transition-all duration-200"
-      >
-        <span style={{ color: "#f2ff00" }}>🌐</span>
-        <span>Idioma</span>
-        <span className="text-[10px] opacity-70">▼</span>
-      </button>
-
-      {/* Menu flutuante que abre ao clicar */}
-      {isOpen && (
-        <>
-          {/* Fundo invisível para fechar ao clicar fora */}
-          <div 
-            className="fixed inset-0" 
-            style={{ zIndex: 9998 }} 
-            onClick={() => setIsOpen(false)} 
-          />
-          <div 
-            className="absolute right-0 mt-2 w-40 rounded-xl bg-[#0d1117] border border-slate-800 p-1 shadow-2xl" 
-            style={{ zIndex: 9999 }}
-          >
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => handleTranslate(lang.code)}
-                className="w-full flex items-center gap-3 px-3 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors text-left"
-              >
-                <span>{lang.flag}</span>
-                <span>{lang.label}</span>
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    // O contêiner recebe uma largura mínima para garantir que o Google desenhe o botão sem sumir
+    <div 
+      id="google_translate_element" 
+      className="inline-block min-w-[140px] text-sm align-middle"
+      style={{ minHeight: '32px' }}
+      translate="no" // Impede que o Google tente traduzir o próprio seletor
+    />
   );
 }
