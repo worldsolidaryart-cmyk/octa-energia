@@ -1,62 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export function GoogleTranslate() {
-  const [isOpen, setIsOpen] = useState(false);
+  const initialized = useRef(false);
 
-  const languages = [
-    { code: "pt", label: "Português", flag: "🇧🇷" },
-    { code: "en", label: "English", flag: "🇺🇸" },
-    { code: "es", label: "Español", flag: "🇪🇸" },
-  ];
+  useEffect(() => {
+    // Impede dupla inicialização em ambientes React modernos
+    if (initialized.current) return;
+    initialized.current = true;
 
-  const handleTranslate = (langCode: string) => {
-    // Define o cookie que o mecanismo de tradução do Google lê nativamente
-    document.cookie = `googtrans=/pt/${langCode}; path=/; domain=.vallecggroup.com.br`;
-    document.cookie = `googtrans=/pt/${langCode}; path=/`;
-    
-    // Recarrega a página para aplicar a tradução imediatamente
-    window.location.reload();
-    setIsOpen(false);
-  };
+    // 1. Cria a configuração de tradução exigida pelo Google
+    (window as any).googleTranslateElementInit = () => {
+      if ((window as any).google && (window as any).google.translate) {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: 'pt',
+            layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+      }
+    };
+
+    // 2. Injeta de forma segura o script apenas se ele não existir na sessão
+    const existingScript = document.getElementById('google-translate-script');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.type = 'text/javascript';
+      script.src = 'https://google.com';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
-    <div className="relative inline-block text-left" style={{ zIndex: 9999 }}>
-      {/* Botão do Seletor */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/50 transition-all duration-200"
-      >
-        <span style={{ color: "#f2ff00" }}>🌐</span>
-        <span>Idioma</span>
-        <span className="text-[10px] opacity-70">▼</span>
-      </button>
-
-      {/* Menu de Opções Dropdown */}
-      {isOpen && (
-        <>
-          <div 
-            className="fixed inset-0" 
-            style={{ zIndex: 9998 }} 
-            onClick={() => setIsOpen(false)} 
-          />
-          <div 
-            className="absolute right-0 mt-2 w-40 rounded-xl bg-[#0d1117] border border-slate-800 p-1 shadow-2xl" 
-            style={{ zIndex: 9999 }}
-          >
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => handleTranslate(lang.code)}
-                className="w-full flex items-center gap-3 px-3 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors text-left"
-              >
-                <span>{lang.flag}</span>
-                <span>{lang.label}</span>
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    <div 
+      id="google_translate_element" 
+      className="inline-block"
+      style={{ minHeight: '32px' }}
+      translate="no" // Garante que o tradutor não tente traduzir seu próprio botão
+    />
   );
 }
