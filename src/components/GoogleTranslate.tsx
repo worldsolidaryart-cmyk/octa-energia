@@ -58,11 +58,10 @@ export function GoogleTranslate() {
   }, []);
 
   return (
-    <div
-      id="google_translate_element"
-      translate="no"
-      className="inline-flex min-w-[140px] align-middle"
-      style={{ minHeight: 32 }}
-    />
+      <div
+          id="google_translate_element"
+          className="translate-button"
+          translate="no"
+      />
   );
 }
