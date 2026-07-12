@@ -23,5 +23,5 @@ export function GoogleTranslate() {
     };
   }, []);
 
-  return <div id="google_translate_element" style={{ display: 'inline-block', marginRight: '15px' }} />;
+  return <div id="google_translate_element" className="inline-block" />;
 }
