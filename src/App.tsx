@@ -37,7 +37,7 @@ import { companyName, originalName, generatorsData, financialPremises, aboutComp
 import { GeneratorModel } from "./types";
 import { generateFinancialPDF, generateCatalogPDF } from "./utils/pdfGenerator";
 import EcoBanner from "./components/EcoBanner";
-import { GoogleTranslate } from "./GoogleTranslate"; // Ou o caminho correto da sua pasta
+import { GoogleTranslate } from "./components/GoogleTranslate";
 
 export default function App() {
   // Navigation states
