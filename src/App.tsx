@@ -38,6 +38,7 @@ import { GeneratorModel } from "./types";
 import { generateFinancialPDF, generateCatalogPDF } from "./utils/pdfGenerator";
 import EcoBanner from "./components/EcoBanner";
 import { GoogleTranslate } from "./components/GoogleTranslate";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 export default function App() {
   // Navigation states
@@ -300,6 +301,7 @@ export default function App() {
             <div className="hidden md:flex items-center space-x-4">
               {/* O TRADUTOR ENTRA AQUI ANTES DO BOTÃO */}
               <GoogleTranslate />
+              <LanguageSwitcher />
             
               <a
                 href="#produtos"
