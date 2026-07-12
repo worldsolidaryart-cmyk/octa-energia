@@ -6,7 +6,7 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     // ALTERADO PARA O NOME CORRETO DO SEU REPOSITÓRIO:
-    base: '/octa-energia/',
+    base: '/',
     
     plugins: [react(), tailwindcss()],
     resolve: {
