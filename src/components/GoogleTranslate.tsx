@@ -1,48 +1,68 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
+declare global {
+  interface Window {
+    googleTranslateElementInit?: () => void;
+    google?: any;
+  }
+}
 
 export function GoogleTranslate() {
   useEffect(() => {
-    // 1. Cria a função de inicialização que o robô do Google exige encontrar
-    (window as any).googleTranslateElementInit = () => {
-      if ((window as any).google && (window as any).google.translate) {
-        new (window as any).google.translate.TranslateElement(
-          {
-            pageLanguage: 'pt',
-            // O layout SIMPLE gera o seletor clássico de idiomas compacto
-            layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-          },
-          'google_translate_element'
-        );
+    let mounted = true;
+
+    const init = () => {
+      if (!mounted) return;
+
+      const container = document.getElementById("google_translate_element");
+      if (!container) {
+        setTimeout(init, 200);
+        return;
       }
+
+      if (!window.google?.translate?.TranslateElement) {
+        setTimeout(init, 200);
+        return;
+      }
+
+      container.innerHTML = "";
+
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "pt",
+          autoDisplay: false,
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        "google_translate_element"
+      );
     };
 
-    // 2. Injeta o script oficial do Google Tradutor de forma fixa
-    const scriptId = 'google-translate-script';
-    let script = document.getElementById(scriptId) as HTMLScriptElement;
+    window.googleTranslateElementInit = init;
 
-    if (!script) {
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.type = 'text/javascript';
-      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    const existingScript = document.getElementById("google-translate-script") as HTMLScriptElement | null;
+
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       script.async = true;
+      script.defer = true;
       document.body.appendChild(script);
     } else {
-      // Se o script já existia em cache, força o re-carregamento imediato do botão
-      if ((window as any).googleTranslateElementInit) {
-        (window as any).googleTranslateElementInit();
-      }
+      init();
     }
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
-    // O contêiner recebe uma largura mínima para garantir que o Google desenhe o botão sem sumir
-    <div 
-      id="google_translate_element" 
-      className="inline-block min-w-[140px] text-sm align-middle"
-      style={{ minHeight: '32px' }}
-      translate="no" // Impede que o Google tente traduzir o próprio seletor
+    <div
+      id="google_translate_element"
+      translate="no"
+      className="inline-flex min-w-[140px] align-middle"
+      style={{ minHeight: 32 }}
     />
   );
 }
