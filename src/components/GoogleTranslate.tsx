@@ -10,19 +10,12 @@ export function GoogleTranslate() {
   ];
 
   const handleTranslate = (langCode: string) => {
-    // Pega o domínio limpo do site (ex: vallecggroup.com.br ou localhost:5173)
-    const currentDomain = window.location.hostname;
-    const currentPath = window.location.pathname;
-
-    if (langCode === "pt") {
-      // Se for português, volta para o site original limpo
-      window.location.href = `https://${currentDomain}${currentPath}`;
-    } else {
-      // NOVO FORMATO OFICIAL: Transforma a URL no espelho de tradução da Google (.translate.goog)
-      // Exemplo: https://translate.goog
-      const formattedDomain = currentDomain.replace(/\./g, "-");
-      window.location.href = `https://${formattedDomain}.translate.goog${currentPath}?_x_tr_sl=pt&_x_tr_tl=${langCode}`;
-    }
+    // Define o cookie que o mecanismo de tradução do Google lê nativamente
+    document.cookie = `googtrans=/pt/${langCode}; path=/; domain=.vallecggroup.com.br`;
+    document.cookie = `googtrans=/pt/${langCode}; path=/`;
+    
+    // Recarrega a página para aplicar a tradução imediatamente
+    window.location.reload();
     setIsOpen(false);
   };
 
