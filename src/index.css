@@ -127,3 +127,26 @@ html {
 #goog-gt-tt {
   display: none !important;
 }
+
+/*Translator*/
+
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+html {
+  top: 0 !important;
+}
+
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+#goog-gt-tt {
+  display: none !important;
+}
