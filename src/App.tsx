@@ -299,7 +299,17 @@ export default function App() {
 
             {/* CTA Header button */}
             <div className="hidden md:flex items-center space-x-4">
-              <div style={{ display: "none" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  opacity: 0,
+                  pointerEvents: "none",
+                  width: 1,
+                  height: 1,
+                  overflow: "hidden",
+                  zIndex: -1,
+                }}
+              >
                 <GoogleTranslate />
               </div>
             
