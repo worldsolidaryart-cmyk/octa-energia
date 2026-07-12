@@ -297,6 +297,9 @@ export default function App() {
 
             {/* CTA Header button */}
             <div className="hidden md:flex items-center space-x-4">
+              {/* O TRADUTOR ENTRA AQUI ANTES DO BOTÃO */}
+              <GoogleTranslate />
+            
               <a
                 href="#produtos"
                 id="btn-nav-quote"
