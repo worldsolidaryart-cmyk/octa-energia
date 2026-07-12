@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
 
-declare global {
-  interface window {
-    googleTranslateElementInit: () => void;
-    google: any;
-  }
-}
-
 export function GoogleTranslate() {
   useEffect(() => {
-    // Define a função global que o script do Google vai chamar
+    // 1. Verifica se o script já não foi adicionado antes para evitar duplicidade
+    const existingScript = document.getElementById('google-translate-script');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.type = 'text/javascript';
+      script.src = '//://google.com';
+      document.body.appendChild(script); // Injeta o script de forma segura pelo ciclo do React
+    }
+
+    // 2. Define a função global de inicialização exigida pelo Google
     (window as any).googleTranslateElementInit = () => {
       if ((window as any).google && (window as any).google.translate) {
         new (window as any).google.translate.TranslateElement(
@@ -23,5 +26,12 @@ export function GoogleTranslate() {
     };
   }, []);
 
-  return <div id="google_translate_element" className="inline-block" />;
+  // Retorna a div envelopada para que o Google atue apenas dentro dela e não quebre o React
+  return (
+    <div 
+      id="google_translate_element" 
+      className="inline-block" 
+      translate="no" // Impede que o Google tente traduzir o próprio botão do tradutor
+    />
+  );
 }
