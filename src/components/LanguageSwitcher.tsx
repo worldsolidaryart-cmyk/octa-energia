@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-const languages = [
+type Lang = {
+  code: string;
+  label: string;
+  flag: string;
+};
+
+const languages: Lang[] = [
   { code: "pt", label: "Português", flag: "🇧🇷" },
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "es", label: "Español", flag: "🇪🇸" },
@@ -9,113 +15,95 @@ const languages = [
 
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState(languages[0]);
-
-  const ref = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState<Lang>(languages[0]);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const close = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+    const onClickOutside = (event: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };
 
-    document.addEventListener("mousedown", close);
-
-    return () => {
-      document.removeEventListener("mousedown", close);
-    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
-  const changeLanguage = (lang: typeof languages[0]) => {
+  const openGoogleMenu = () => {
+    const trigger = document.querySelector(
+      ".goog-te-gadget-simple a"
+    ) as HTMLAnchorElement | null;
+
+    if (!trigger) {
+      console.warn("Menu do Google Translate ainda não está disponível.");
+      return;
+    }
+
+    trigger.click();
+  };
+
+  const selectLanguage = (lang: Lang) => {
     setCurrent(lang);
     setOpen(false);
 
     if (lang.code === "pt") {
-      document.cookie =
-        "googtrans=/pt/pt;path=/;domain=" + window.location.hostname;
-    } else {
-      document.cookie =
-        "googtrans=/pt/" +
-        lang.code +
-        ";path=/;domain=" +
-        window.location.hostname;
+      openGoogleMenu();
+      return;
     }
 
-    document.cookie =
-      "googtrans=/pt/" +
-      lang.code +
-      ";path=/";
+    openGoogleMenu();
 
-    window.location.reload();
+    setTimeout(() => {
+      const items = Array.from(
+        document.querySelectorAll(".goog-te-menu2-item span.text")
+      ) as HTMLSpanElement[];
+
+      const match = items.find((el) => {
+        const text = el.textContent?.trim().toLowerCase() ?? "";
+        return text === lang.label.toLowerCase();
+      });
+
+      if (match) {
+        const clickable = match.closest("a, div") as HTMLElement | null;
+        clickable?.click();
+      } else {
+        const fallbackItems = Array.from(
+          document.querySelectorAll(".goog-te-menu2-item")
+        ) as HTMLElement[];
+
+        const fallback = fallbackItems.find((el) => {
+          const text = el.textContent?.trim().toLowerCase() ?? "";
+          return text.includes(lang.label.toLowerCase());
+        });
+
+        fallback?.click();
+      }
+    }, 350);
   };
 
   return (
-    <div ref={ref} className="relative">
-
+    <div ref={rootRef} className="relative z-50">
       <button
-        onClick={() => setOpen(!open)}
-        className="
-        flex
-        items-center
-        gap-2
-        h-11
-        px-4
-        rounded-xl
-        border
-        border-white/15
-        bg-black/40
-        text-white
-        text-sm
-        font-medium
-        transition
-        hover:border-[#f2ff00]
-        "
+        onClick={() => setOpen((v) => !v)}
+        type="button"
+        className="flex h-11 items-center gap-2 rounded-lg border border-white/15 bg-black/40 px-4 text-sm font-medium text-white transition hover:border-[#f2ff00]"
       >
         <span>{current.flag}</span>
-
-        {current.label}
-
+        <span>{current.label}</span>
         <span>▼</span>
       </button>
 
       {open && (
-        <div
-          className="
-          absolute
-          right-0
-          mt-2
-          w-48
-          rounded-xl
-          overflow-hidden
-          bg-[#111]
-          border
-          border-white/10
-          shadow-2xl
-          z-50
-          "
-        >
+        <div className="absolute right-0 mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-[#111] shadow-2xl">
           {languages.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => changeLanguage(lang)}
-              className="
-              flex
-              items-center
-              gap-3
-              w-full
-              px-4
-              py-3
-              text-white
-              text-left
-              hover:bg-[#f2ff00]
-              hover:text-black
-              transition
-              "
+              type="button"
+              onClick={() => selectLanguage(lang)}
+              className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm text-white transition hover:bg-[#f2ff00] hover:text-black"
             >
               <span>{lang.flag}</span>
-
-              {lang.label}
+              <span>{lang.label}</span>
             </button>
           ))}
         </div>
