@@ -12,7 +12,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "110 / 220 / 380 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "2 a 3 m²",
-    image: "/src/assets/images/gen_low_1782162084408.jpg",
+    image: "/images/gen_low_1782162084408.jpg",
     features: [
       "Operação extremamente silenciosa (<50 dB)",
       "Livre de combustão ou emissão de CO₂",
@@ -35,7 +35,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "110 / 220 / 380 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "3 a 5 m²",
-    image: "/src/assets/images/gen_low_1782162084408.jpg",
+    image: "/images/gen_low_1782162084408.jpg",
     features: [
       "Carenagem de aço galvanizado antiferrugem",
       "Livre de combustão ou emissão de CO₂",
@@ -58,7 +58,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "110 / 220 / 380 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "4 a 6 m²",
-    image: "/src/assets/images/gen_low_1782162084408.jpg",
+    image: "/images/gen_low_1782162084408.jpg",
     features: [
       "Ampla isolação magnética de alta performance",
       "Controle digital integrado com CLP industrial",
@@ -81,7 +81,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "110 / 220 / 380 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "5 a 8 m²",
-    image: "/src/assets/images/gen_mid_1782162098287.jpg",
+    image: "/images/gen_mid_1782162098287.jpg",
     features: [
       "Operação silenciosa (carenagem acústica)",
       "Livre de combustão ou emissão de CO₂",
@@ -104,7 +104,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "110 / 220 / 380 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "6 a 10 m²",
-    image: "/src/assets/images/gen_mid_1782162098287.jpg",
+    image: "/images/gen_mid_1782162098287.jpg",
     features: [
       "Operação contínua 24/7 (Base Load)",
       "Cabine com isolamento térmico e acústico de alta performance",
@@ -127,7 +127,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "6 a 10 m²",
-    image: "/src/assets/images/gen_mid_1782162098287.jpg",
+    image: "/images/gen_mid_1782162098287.jpg",
     features: [
       "Carenagem acústica isolante de alta performance",
       "Rendimento real constante sem fadiga mecânica",
@@ -150,7 +150,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "8 a 12 m²",
-    image: "/src/assets/images/gen_mid_1782162098287.jpg",
+    image: "/images/gen_mid_1782162098287.jpg",
     features: [
       "Sistema GAEL de propensão eletromecânica magnética",
       "Rotor de alta inércia assistido por neodímio",
@@ -173,7 +173,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "8 a 15 m²",
-    image: "/src/assets/images/gen_mid_1782162098287.jpg",
+    image: "/images/gen_mid_1782162098287.jpg",
     features: [
       "Concepção avançada de baixíssimo ruído",
       "Interface digital de controle inteligente com monitoramento remoto IoT",
@@ -196,7 +196,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "9 a 16 m²",
-    image: "/src/assets/images/gen_closed_high_1782163011553.jpg",
+    image: "/images/gen_closed_high_1782163011553.jpg",
     features: [
       "Cabine com tampas laterais fechadas e blindadas contra intempéries",
       "Design aerodinâmico selado sem chaminés de escape ou silenciadores aparentes",
@@ -219,7 +219,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "10 a 17 m²",
-    image: "/src/assets/images/gen_closed_high_1782163011553.jpg",
+    image: "/images/gen_closed_high_1782163011553.jpg",
     features: [
       "Carenagem de isolamento térmico e acústico profundo (Tampas Laterais Seladas)",
       "Design flush sem descargas ou silenciadores externos visíveis",
@@ -242,7 +242,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "10 a 18 m²",
-    image: "/src/assets/images/gen_closed_high_1782163011553.jpg",
+    image: "/images/gen_closed_high_1782163011553.jpg",
     features: [
       "Carenagem de isolamento térmico e acústico profundo (Tampas Laterais Seladas)",
       "Design flush sem descargas ou silenciadores externos visíveis",
@@ -265,7 +265,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "220 / 380 / 440 VCA",
     frequency: "50 / 60 Hz",
     areaNeeded: "10 a 18 m²",
-    image: "/src/assets/images/gen_closed_high_1782163011553.jpg",
+    image: "/images/gen_closed_high_1782163011553.jpg",
     features: [
       "Geração de 324.000 kWh/mês com fator de carga de 90%",
       "Cabine com tampas laterais fechadas e blindadas contra intempéries",
@@ -288,7 +288,7 @@ export const generatorsData: GeneratorModel[] = [
     voltage: "380 / 440 VCA ou Média Tensão",
     frequency: "50 / 60 Hz",
     areaNeeded: "15 a 30 m²",
-    image: "/src/assets/images/generator_1mw_1781368367812.jpg",
+    image: "/images/generator_1mw_1781368367812.jpg",
     features: [
       "Configuração modular em contêiner marítimo acústico blindado",
       "Múltiplas unidades operando em paralelo com facilidade",
