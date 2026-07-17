@@ -1,1 +1,1 @@
-App criado com AI Google Studio 
+Desenvolvido by worldsolidaryart
