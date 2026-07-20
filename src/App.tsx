@@ -1761,7 +1761,7 @@ export default function App() {
                 <a href="#quem-somos" className="hover:text-white transition-colors">Quem Somos</a>
                 <a href="#tecnologia" className="hover:text-white transition-colors">Nossa Física</a>
                 <a href="#produtos" className="hover:text-white transition-colors">Produtos</a>
-                <a href="https://gerador-octa.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Gerador de Proposta</a>
+                {/* <a href="https://gerador-octa.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Gerador de Proposta</a> */}
               </div>
             </div>
 
