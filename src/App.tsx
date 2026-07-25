@@ -1774,7 +1774,10 @@ export default function App() {
                 <h3 className="text-2xl font-bold text-emerald-400">Obrigado!</h3>
                 <p className="mt-2 text-slate-300">Recebemos sua solicitação. Nossa equipe entrará em contato em breve.</p>
                 <button
-                  onClick={resetForm}
+                  onClick={() => {
+                    resetForm();
+                    setFormSubmitted(false);
+                  }}
                   className="mt-6 inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-[#f2ff00] text-[#060606]"
                 >
                   Enviar outro contato
