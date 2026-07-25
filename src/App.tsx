@@ -1722,6 +1722,123 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* CONTACT SECTION */}
+      <section id="contato" className="py-24 relative bg-[#07080a] border-t border-white/5 z-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <span className="text-xs font-mono text-[#f2ff00] uppercase tracking-widest bg-[#f2ff00]/10 px-3 py-1 rounded-full">Fale Conosco</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mt-4">Contato Comercial</h2>
+            <p className="text-slate-400 text-sm mt-2">Preencha o formulário e entraremos em contato para agendar uma reunião técnica.</p>
+          </div>
+      
+          <div className="bg-[#0b0b0d] p-6 rounded-2xl border border-white/5">
+            {formSubmitted ? (
+              <div className="text-center py-12">
+                <h3 className="text-2xl font-bold text-emerald-400">Obrigado!</h3>
+                <p className="mt-2 text-slate-300">Recebemos sua solicitação. Nossa equipe entrará em contato em breve.</p>
+                <button
+                  onClick={resetForm}
+                  className="mt-6 inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-[#f2ff00] text-[#060606]"
+                >
+                  Enviar outro contato
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={submitForm} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-slate-400">Nome</label>
+                  <input
+                    name="name"
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  />
+                  {formErrors.name && <p className="text-rose-400 text-xs mt-1">{formErrors.name}</p>}
+                </div>
+      
+                <div>
+                  <label className="text-xs text-slate-400">Empresa</label>
+                  <input
+                    name="company"
+                    value={formData.company}
+                    onChange={handleFormChange}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  />
+                  {formErrors.company && <p className="text-rose-400 text-xs mt-1">{formErrors.company}</p>}
+                </div>
+      
+                <div>
+                  <label className="text-xs text-slate-400">E-mail</label>
+                  <input
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  />
+                  {formErrors.email && <p className="text-rose-400 text-xs mt-1">{formErrors.email}</p>}
+                </div>
+      
+                <div>
+                  <label className="text-xs text-slate-400">Telefone</label>
+                  <input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleFormChange}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  />
+                  {formErrors.phone && <p className="text-rose-400 text-xs mt-1">{formErrors.phone}</p>}
+                </div>
+      
+                <div className="md:col-span-2">
+                  <label className="text-xs text-slate-400">Interesse (kW aproximado)</label>
+                  <select
+                    name="interestPower"
+                    value={formData.interestPower}
+                    onChange={handleFormChange}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  >
+                    <option value="15">15 kW</option>
+                    <option value="50">50 kW</option>
+                    <option value="100">100 kW</option>
+                    <option value="300">300 kW</option>
+                    <option value="1000">1 MW</option>
+                  </select>
+                </div>
+      
+                <div className="md:col-span-2">
+                  <label className="text-xs text-slate-400">Mensagem / Observações</label>
+                  <textarea
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleFormChange}
+                    rows={4}
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[#050608] border border-white/5 text-white text-sm"
+                  />
+                </div>
+      
+                <div className="md:col-span-2 flex items-center justify-between gap-4">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center px-5 py-2.5 rounded-lg bg-[#f2ff00] text-[#060606] font-bold"
+                  >
+                    Enviar Contato
+                  </button>
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="inline-flex items-center px-4 py-2.5 rounded-lg bg-transparent border border-white/10 text-slate-300"
+                  >
+                    Limpar
+                  </button>
+                  <div className="text-xs text-slate-400">ou ligue: <strong className="text-white">+55 (85) 9XXXX-XXXX</strong></div>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="relative bg-[#04070d] border-t border-white/5 text-slate-400 py-16 z-10 overflow-hidden">
         
