@@ -150,3 +150,52 @@ html {
 #goog-gt-tt {
   display: none !important;
 }
+
+.whatsapp-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .25s ease;
+
+  z-index: 9999;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp-float img {
+  width: 30px;
+  height: 30px;
+}
+
+.whatsapp-float::after{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(37,211,102,.35);
+  animation: whatsapp-ring 2.8s infinite;
+}
+
+@keyframes whatsapp-ring{
+  0%{
+    transform:scale(1);
+    opacity:.7;
+  }
+
+  100%{
+    transform:scale(1.45);
+    opacity:0;
+  }
+}
