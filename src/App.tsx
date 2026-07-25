@@ -232,7 +232,7 @@ export default function App() {
       data.append("currentBill", formData.currentBill);
       data.append("notes", formData.notes);
   
-      data.append("_subject", "Novo Lead - OCTA Energia");
+      data.append("_subject", "Novo Contato - OCTA Energia");
       data.append("_captcha", "false");
       data.append("_template", "table");
   
@@ -1774,10 +1774,8 @@ export default function App() {
                 <h3 className="text-2xl font-bold text-emerald-400">Obrigado!</h3>
                 <p className="mt-2 text-slate-300">Recebemos sua solicitação. Nossa equipe entrará em contato em breve.</p>
                 <button
-                  onClick={() => {
-                    resetForm();
-                    setFormSubmitted(false);
-                  }}
+                  type="button"
+                  onClick={() => setFormSubmitted(false)}
                   className="mt-6 inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-[#f2ff00] text-[#060606]"
                 >
                   Enviar outro contato
@@ -1871,7 +1869,7 @@ export default function App() {
                   >
                     Limpar
                   </button>
-                  <div className="text-xs text-slate-400">ou ligue: <strong className="text-white">+55 (85) 9XXXX-XXXX</strong></div>
+                  <div className="text-xs text-slate-400">ou ligue: <strong className="text-white">+55 (85) 99404-5663</strong></div>
                 </div>
               </form>
             )}
