@@ -237,7 +237,7 @@ export default function App() {
       data.append("_template", "table");
   
       const response = await fetch(
-        "https://formsubmit.co/ajax/comercial@vallecggroup.com.br",
+        "https://formsubmit.co/comercial@vallecggroup.com.br",
         {
           method: "POST",
           body: data,
