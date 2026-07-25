@@ -2019,7 +2019,31 @@ export default function App() {
         </div>
 
       </footer>
+      {/* Botão flutuante WhatsApp */}
+      <a
+        href="https://wa.me/55SEUNUMERO?text=Olá! Gostaria de saber mais sobre os Geradores OCTA."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        className="whatsapp-float"
+      >
+        <div className="whatsapp-pulse"></div>
 
+        <div className="whatsapp-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="30"
+            height="30"
+            aria-hidden="true"
+          >
+            <path
+              fill="#fff"
+              d="M19.11 17.23c-.29-.15-1.71-.84-1.97-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.33.22-.62.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.15-.64-1.54-.88-2.1-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.98 2.44.02 1.44 1.05 2.83 1.2 3.03.15.19 2.06 3.14 5 4.4.7.3 1.24.48 1.66.61.7.22 1.33.19 1.83.12.56-.08 1.71-.7 1.95-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"
+            />
+          </svg>
+        </div>
+      </a>
     </div>
   );
 }
