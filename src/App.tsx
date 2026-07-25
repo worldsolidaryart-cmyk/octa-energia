@@ -124,7 +124,7 @@ export default function App() {
   // Monitor scroll to update active nav link
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["inicio", "quem-somos", "tecnologia", "produtos", "viabilidade", "faturamento", "whatsapp-ia"];
+      const sections = ["inicio", "quem-somos", "tecnologia", "produtos", "viabilidade", "faturamento", "whatsapp-ia", "contato"];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
@@ -353,7 +353,8 @@ export default function App() {
                   { id: "inicio", label: "Início" },
                   { id: "quem-somos", label: "Quem Somos" },
                   { id: "tecnologia", label: "Tecnologia" },
-                  { id: "produtos", label: "Geradores Carenados" }
+                  { id: "produtos", label: "Geradores Carenados" },
+                  { id: "contato", label: "Contato" }
                 ].map((item) => (
                   <a
                     key={item.id}
