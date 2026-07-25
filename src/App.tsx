@@ -2021,7 +2021,7 @@ export default function App() {
       </footer>
       {/* Botão flutuante WhatsApp */}
       <a
-        href="https://wa.me/55SEUNUMERO?text=Olá! Gostaria de saber mais sobre os Geradores OCTA."
+        href="https://wa.me/5585994045663?text=Olá! Gostaria de saber mais sobre os Geradores OCTA."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
