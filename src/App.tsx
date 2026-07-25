@@ -289,7 +289,7 @@ export default function App() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a href="#inicio" className="flex items-center space-x-3 group">
-              <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-tr from-[#f2ff00] to-cyan-400 shadow-lg shadow-[#f2ff00]/10 group-hover:scale-105 trans[...]
+              <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-tr from-[#f2ff00] to-cyan-400 shadow-lg shadow-[#f2ff00]/10 group-hover:scale-105 transition-transform duration-300">
                 <InfinityIcon className="w-6 h-6 text-black stroke-[3.0]" />
                 <span className="absolute top-[-3px] right-[-3px] flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f2ff00] opacity-75"></span>
