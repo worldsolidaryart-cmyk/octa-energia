@@ -276,7 +276,8 @@ export default function App() {
                 { id: "inicio", label: "Início" },
                 { id: "quem-somos", label: "Quem Somos" },
                 { id: "tecnologia", label: "Tecnologia" },
-                { id: "produtos", label: "Geradores Carenados" }
+                { id: "produtos", label: "Geradores Carenados" },
+                { id: "contato", label: "Contato" }
               ].map((item) => (
                 <a
                   key={item.id}
