@@ -269,8 +269,7 @@ export default function App() {
       interestPower: "100",
       currentBill: "",
       notes: "Gostaria de agendar reunião para avaliar a implantação comercial de um gerador OCTA 15 Carenado em nosso site."
-    });
-    setFormSubmitted(false);
+    });    
   };
 
   return (
