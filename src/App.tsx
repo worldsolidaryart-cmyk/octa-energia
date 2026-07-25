@@ -1832,7 +1832,7 @@ export default function App() {
                   >
                     Limpar
                   </button>
-                  <div className="text-xs text-slate-400">ou ligue: <strong className="text-white">+55 (85) 9XXXX-XXXX</strong></div>
+                  <div className="text-xs text-slate-400">ou ligue: <strong className="text-white">+55 (85) 99404-5663</strong></div>
                 </div>
               </form>
             )}
