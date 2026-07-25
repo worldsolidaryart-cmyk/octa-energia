@@ -206,7 +206,7 @@ export default function App() {
     }
   };
 
-  const submitForm = (e: React.FormEvent) => {
+  const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
   
     const errors: Record<string, string> = {};
@@ -221,7 +221,43 @@ export default function App() {
       return;
     }
   
-    setFormSubmitted(true);
+    try {
+      const data = new FormData();
+  
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone);
+      data.append("company", formData.company);
+      data.append("interestPower", formData.interestPower);
+      data.append("currentBill", formData.currentBill);
+      data.append("notes", formData.notes);
+  
+      data.append("_subject", "Novo Lead - OCTA Energia");
+      data.append("_captcha", "false");
+      data.append("_template", "table");
+  
+      const response = await fetch(
+        "https://formsubmit.co/ajax/comercial@vallecggroup.com.br",
+        {
+          method: "POST",
+          body: data,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error("Erro ao enviar formulário.");
+      }
+  
+      setFormSubmitted(true);
+      resetForm();
+  
+    } catch (err) {
+      console.error(err);
+      alert("Não foi possível enviar o formulário. Tente novamente.");
+    }
   };
 
   const resetForm = () => {
